@@ -1,2 +1,2 @@
 # ggr472-lab4
- 
+# This web application uses a color-coded hexgrid (with variable hexagon side-length) to display the number of pedestrian and cyclist collisions at various locations throughout Toronto. A hexgrid is beneficial over a choropleth in ensuring that all regions are of the same area, hence removing any visual bias traditionally associated with varying areas. The app also includes layers for visualizing the individual collision points, the study area bounds, and the hexagon with the maximum number of collisions. The data used is from Open Data Toronto (https://open.toronto.ca/dataset/motor-vehicle-collisions-involving-killed-or-seriously-injured-persons/) 
