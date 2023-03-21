@@ -1,0 +1,138 @@
+<!-- specify the doctype as html such that this file is interpretable -->
+<!DOCTYPE html>
+
+<!-- set the "lang" attribute to English to specify the language of this file's text content -->
+<html lang="en">
+
+<head>
+    <!-- provide the metadata for the web page corresponding to this file (set the character encoding, specify the view of the page on devices of different sizes) -->  
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- define a title for the web page (that will appear in the browser) -->
+    <title>Pedestrian and Cyclist Collisions</title>
+    <!-- provide scripts & links to the Mapbox API, Mabox Geocoder, scripts to the external Turf.js library, and links to the local style.css file and external Bootstrap CSS library (which specify the style of the page) --> 
+    <!-- mapbox API -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css' rel='stylesheet' />
+    <!-- mapbox geocoder plugin -->
+    <script
+    src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
+    type="text/css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Turf.js -->
+    <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">   
+</head>
+
+<body>
+
+    <!-- define the navbar using https://getbootstrap.com/docs/5.3/components/navbar/  -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <!-- define the title for the navbar as "Navigate" and specify that the web page should not redirect when this title is clicked --> 
+          <a class="navbar-brand" href="#">Navigate</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <!-- specify that the web page should not redirect when "Home" is clicked in the navbar while on the "Home" page -->
+                <!-- specify that the "Home" button of the navbar should be highlighted while on the "Home" page  -->
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <!-- specify that the web page should redirect to the local more_info.html file when "More Info" is clicked in the navbar while on the "Home" page -->
+                <a class="nav-link" href="more_info.html">More Info</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <!-- define a new section which will have the map embedded within it --> 
+    <div id='map' class='map'></div>
+
+    <!-- define a new section on top of the map (for the geocoder and return button) --> 
+    <div class='map-overlay-search'>
+
+        <!-- specify the label of the geocoder -->
+        <label>Search for location</label>
+        <!-- define a new section within the 'map-overlay-search' which will have the geocoder embedded within it -->
+        <div id="geocoder" class="geocoder"></div>
+        <!-- create a button below the geocoder that will return to original view when clicked  -->
+        <button type="button" class="btn btn-primary btn-sm" id="returnbutton">Return to original view</button>
+
+    </div>
+
+    <!-- define a new section on top of the map (for the toggle menu)-->
+    <div class='map-overlay-data'>
+
+        <!-- specify the label of the toggle menu -->
+        <label>Filter map view</label>
+
+        <!-- define a new section within the 'map-overlay-data' which contains a "checkbox" form that will be used for toggling the Collision Points layer and will have a corresponding label -->
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="layercheck" checked>
+            <label id="label_points" class="form-check-label" for="flexCheckChecked">
+            </label>
+        </div>
+
+         <!-- define a new section within the 'map-overlay-data' which contains a "checkbox" form that will be used for toggling the Study Area Bounds layer and will have a corresponding label -->
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="layercheck_bounds" checked>
+            <label id="label_bounds" class="form-check-label" for="flexCheckChecked">
+            </label>
+        </div>
+
+       <!-- define a new section within the 'map-overlay-data' which contains a "checkbox" form that will be used for toggling the Max Collision Area layer and will have a corresponding label -->
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="layercheck_max" checked>
+            <label id="label_max" class="form-check-label" for="flexCheckChecked">
+            </label>
+        </div>
+
+    </div>
+
+    <!-- define a new section on top of the map (for the slider)-->
+    <div class='map-overlay-planner'>
+
+        <!-- specify the (initial) text associated with the slider value-->
+        <label id="radius_text">0km</label>
+
+        <!-- define a new section within the 'map-overlay-planner' which contains a slider  -->
+        <div class="slider_div" id="slider_div">
+            <!-- specify the label of the slider-->
+            <label>hexagon side length:</label>
+            <!-- define the slider and specify its bounds and step value -->
+            <input id="slider" type="range" min="0" max="1" step="0.25" value="0">
+        </div>
+
+    </div>
+
+    <!-- define a new section on top of the map (for the collapsible legend)-->
+    <div class="map-overlay-legend">
+
+        <!-- create a button to toggle the collapsible legend and specify its (initial) value-->
+        <button type="button" class="collapsible" id="collapsible">Open Legend</button>
+
+        <!-- define a new section within the 'map-overlay-legend' which will have the legend embedded within it -->
+        <div id='legend' class='legend'>
+            <!-- specify text to be displayed at a heading 4 level -->
+            <h4>Collision No.</h4>
+        </div>
+
+    </div>
+
+    <!-- provide links to the local script.js file and the external Bootstrap Javascript bundle (which allow the functionality of the page) --> 
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

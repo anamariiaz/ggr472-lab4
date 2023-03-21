@@ -1,0 +1,134 @@
+/* specify formatting of the map contained in the class "map" */
+.map {
+    position: absolute;
+    top: 50px; /* place map below navbar */
+    bottom: 0;
+    width: 100%; /* fill entire width of screen with map */
+}
+
+/* specify formatting of section including slider contained in the class "map-overlay-planner" */
+.map-overlay-planner {
+    position: relative;
+    font: 14px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    background: rgba(249, 249, 249, 0.8);
+    top: 18px;
+    left: 0;
+    width: 260px;
+    margin: 10px 0 0 10px;
+    padding: 10px;
+    /*around elements inside of overlay*/
+    overflow: visible;
+}
+
+/* specify formatting of section including toggle menu contained in the class "map-overlay-data" */
+.map-overlay-data {
+    position: relative;
+    font: 14px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    background: rgba(249, 249, 249, 0.8);
+    top: 18px;
+    left: 0;
+    width: 260px;
+    margin: 10px 0 0 10px;
+    padding: 10px;
+    /*around elements inside of overlay*/
+    overflow: visible;
+}
+
+/* specify formatting of the 'key' associated with the toggle menu's 'Collapsible Points' layer contained in the class "label-key-points" */
+.label-key-points {
+    display: inline-block;
+    border-radius: 50%; /* curve border to make circles */
+    height: 10px; /* specify height of circles */
+    width: 10px; /* specify width of circles */
+    margin-right: 5px; /* specify position of circles */
+}
+
+/* specify formatting of the 'key' associated with the toggle menu's 'Study Area Bounds' layer contained in the class "label-key-bounds" */
+.label-key-bounds {
+    display: inline-block;
+    border-radius: 0%;
+    height: 2px;  /* adjust height to make small horizontal lines */
+    width: 10px; /* adjust height to make small horizontal lines */
+    margin-right: 5px; /* specify position of lines */
+}
+
+/* specify formatting of the 'key' associated with the toggle menu's 'Max Collision Area' layer contained in the class "label-key-max" */
+.label-key-max {
+    display: inline-block;
+    border-radius: 0%; 
+    height: 2px; /* adjust height to make small horizontal lines */
+    width: 10px; /* adjust height to make small horizontal lines */
+    margin-right: 5px; /* specify position of lines */
+}
+
+/* specify formatting of section including geocoder and return button contained in the class "map-overlay-search" */
+.map-overlay-search {
+    position: relative;
+    font: 14px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    background: rgba(255, 255, 255, 0.8);
+    top: 35px; /*0*/
+    left: 0;
+    width: 260px;
+    margin: 10px 0 0 10px;
+    padding: 10px;
+    /*around elements inside of overlay*/
+    overflow: visible;
+}
+
+/* specify formatting of the geocoder contained in the class "geocoder" */
+.geocoder {
+    position: relative;
+    margin: 10px 0 10px;
+}
+
+/* specify formatting of section including collapsible legend contained in the class "map-overlay-legend" */
+.map-overlay-legend {
+    position: absolute;
+    font: 14px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    background: rgba(255, 255, 255, 0.8);
+    bottom: 20px;
+    right: 0;
+    width: 260px;
+    margin: 10px 0 0 10px;
+    padding: 10px;
+    /*around elements inside of overlay*/
+    overflow: visible;
+}
+
+/* specify formatting of the button used to open and close the collapsible legend */
+.collapsible {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+/* specify change in color of the button for the collapsible legend when it is hovered over or when the legend is open  */
+.active, .collapsible:hover {
+background-color: #ccc;
+}
+
+/* specify formatting of the legend contained in the class "legend" */
+.legend {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+/* specify formatting of the legend's 'keys' contained in the class "legend-key"*/ 
+.legend-key {
+    display: inline-block;
+    border-radius: 50%; /* curve border to make circles */
+    height: 20px;  /* specify height of circles */
+    width: 20px; /* specify width of circles */
+    margin-right: 5px; /* specify position of circles */
+}  
+
+
+
